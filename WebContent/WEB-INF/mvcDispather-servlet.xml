@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<!-- 自动搜索@Controller标注的类 用于指明系统从哪个路径下寻找controller，然后提前初始化这些对象。 -->
-	<context:component-scan base-package="com.oct.ga.admin.mvc" />
+	<context:component-scan base-package="net.younguard.bighorn.web.mvc" />
 	<mvc:annotation-driven />
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -42,7 +42,7 @@
 		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="com.oct.ga.admin.mvc.AuthorizationException">login</prop>
+				<prop key="net.younguard.bighorn.web.mvc.AuthorizationException">login</prop>
 			</props>
 		</property>
 	</bean>
@@ -50,7 +50,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*" />
-			<bean class="com.oct.ga.admin.mvc.SecurityInterceptor">
+			<bean class="net.younguard.bighorn.web.mvc.SecurityInterceptor">
 				<property name="excludedUrls">
 					<list>
 						<value>/</value>
@@ -61,6 +61,6 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
-	<bean id="applicationContextProvider" class="com.oct.ga.admin.mvc.ApplicationContextProvider"></bean>
+	<bean id="applicationContextProvider" class="net.younguard.bighorn.web.ApplicationContextProvider"></bean>
 	
 </beans>
