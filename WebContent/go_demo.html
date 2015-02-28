@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Carousel Template for Bootstrap</title>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="jquery/1.11.2/jquery.min.js"></script>
+
+<script type="text/javascript" src="./js/go/GoGame.js"></script>
+<script type="text/javascript" src="./js/go/GoBoard.js"></script>
+<script type="text/javascript" src="./js/go/GoJudgement.js"></script>
+<script type="text/javascript" src="./js/go/GoBoardPlay.js"></script>
+
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div id='GoBoardPanel' ></div>
+	<embed name="clickSound" src="./sound/button-30.wav" autostart="false" mastersound hidden="true" volume=100 width=0 height=0></embed>
+	<embed name="errorSound" src="./sound/beep-3.wav" autostart="false" mastersound hidden="true" volume=100 width=0 height=0></embed>
+    
+	
+	<script type="text/javascript">
+		// 初始化棋盘
+		var goBoard = new GoBoardPlay();
+		goBoard.Init('GoBoardPanel');
+		goBoard.SetMode(__Mode_Playing_Black);
+		var gameId = '00000000-0000-0000-0000-000000000000';
+
+		// 鼠标右键被禁用
+		document.oncontextmenu = stop;
+	</script>
+    
+  </body>
+</html>
