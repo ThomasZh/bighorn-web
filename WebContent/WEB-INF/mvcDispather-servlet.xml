@@ -54,7 +54,13 @@
 				<property name="excludedUrls">
 					<list>
 						<value>/</value>
+						<value>/index.htm</value>
 						<value>/login.htm</value>
+						<value>/loginAction.htm</value>
+						<value>/logoutAction.htm</value>
+						<value>/signup.htm</value>
+						<value>/signupAction.htm</value>
+						<value>/invite.htm</value>
 					</list>
 				</property>
 			</bean>
@@ -62,5 +68,5 @@
 	</mvc:interceptors>
 
 	<bean id="applicationContextProvider" class="net.younguard.bighorn.web.ApplicationContextProvider"></bean>
-	
+
 </beans>

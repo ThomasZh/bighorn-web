@@ -7,6 +7,51 @@ body {
   color: #5a5a5a;
 }
 
+.row {
+margin-left: -20px;
+*zoom: 1;
+}
+
+.block {
+  //margin-left:5px;
+  //margin-right:5px;
+  margin-top:5px;
+  margin-bottom:5px;
+  //margin:5px;	
+}
+
+.split-left { 
+  width: 50%; 
+  //margin:5px; 
+  //padding: 1em; 
+  border-style:solid; 
+  border-width:1px;
+//  border-left-color:#76a080; 
+//  border-right-color:#5f9190; 
+//  border-top-color:#76a080; 
+//  border-bottom-color:#76a080;
+  border-color: #337ab7;
+  color: #fff;
+//  background-color: #337ab7;
+  background: #337ab7; 
+} 
+
+.split-right { 
+  width: 50%; 
+  //margin:5px; 
+  //padding: 1em; 
+  border-style:solid; 
+  border-width:1px;
+  border-left-color:#fff; 
+  border-right-color:#337ab7; 
+  border-top-color:#337ab7; 
+  border-bottom-color:#337ab7;
+//  border-color: #337ab7;
+  color: #337ab7;
+//  background-color: #fff;
+  background: #fff; 
+} 
+
 
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
