@@ -11,18 +11,24 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @Scope("session")
-public class InviteViewController
+public class CreateGameViewController
 {
-	@RequestMapping(value = "/invite", method = RequestMethod.GET)
+	@RequestMapping(value = "/create-game", method = RequestMethod.GET)
 	public ModelAndView getPages(HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		if (session == null)
 			System.out.println("session is null");
 
-		session.setAttribute("lastPage", "invite");
+		session.setAttribute("lastPage", "create-game");
 
-		ModelAndView model = new ModelAndView("invite");
-		return model;
+		UserSession user = (UserSession) session.getAttribute("user");
+		if (user == null) {
+			ModelAndView model = new ModelAndView("login");
+			return model;
+		} else {
+			ModelAndView model = new ModelAndView("create-game");
+			return model;
+		}
 	}
 }

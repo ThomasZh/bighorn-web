@@ -39,8 +39,8 @@
 	<div class="container">
 		<form class="form-signup" action="signupAction.htm" commandName="signup">
 			<h2 class="form-signup-heading">Please sign up</h2>
-			<label for="inputLoginame" class="sr-only">Login name</label> 
-			<input type="text" name="inputLoginame" id="inputLoginame" class="form-control" placeholder="login name" required autofocus> 
+			<label for="inputLoginName" class="sr-only">Login name</label> 
+			<input type="text" name="inputLoginName" id="inputLoginName" class="form-control" placeholder="login name" required autofocus> 
 			<label for="inputPassword" class="sr-only">Password</label> 
 			<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="password" required>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>

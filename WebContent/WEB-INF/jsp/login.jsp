@@ -39,8 +39,8 @@
 	<div class="container">
 		<form class="form-signin" action="loginAction.htm" commandName="signin">
 			<h2 class="form-signin-heading">Please sign in</h2>
-			<label for="inputLoginame" class="sr-only">Loginame</label> 
-			  <input type="text" name="inputLoginame" id="inputLoginame" class="form-control" placeholder="Loginame" required autofocus> 
+			<label for="inputLoginName" class="sr-only">Login name</label> 
+			  <input type="text" name="inputLoginName" id="inputLoginName" class="form-control" placeholder="Login name" required autofocus> 
 			  <label for="inputPassword" class="sr-only">Password</label> 
 			  <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
 			<div class="checkbox">

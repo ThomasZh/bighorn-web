@@ -22,10 +22,10 @@
 	<!-- Datasource -->
 	<bean id="bighornDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="${cscart.connection.driver_class}" />
-		<property name="jdbcUrl" value="${cscart.connection.url}" />
-		<property name="user" value="${cscart.connection.username}" />
-		<property name="password" value="${cscart.connection.password}" />
+		<property name="driverClass" value="${bighorn.connection.driver_class}" />
+		<property name="jdbcUrl" value="${bighorn.connection.url}" />
+		<property name="user" value="${bighorn.connection.username}" />
+		<property name="password" value="${bighorn.connection.password}" />
 
 		<!-- 连接池中保留的最小连接数. -->
 		<property name="minPoolSize" value="1" />

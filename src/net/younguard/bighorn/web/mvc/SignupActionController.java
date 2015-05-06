@@ -3,6 +3,13 @@ package net.younguard.bighorn.web.mvc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.younguard.bighorn.GlobalArgs;
+import net.younguard.bighorn.broadcast.service.AccountService;
+import net.younguard.bighorn.comm.util.DatetimeUtil;
+import net.younguard.bighorn.comm.util.EcryptUtil;
+import net.younguard.bighorn.web.ApplicationContextProvider;
+
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,21 +27,32 @@ public class SignupActionController
 		if (session == null)
 			System.out.println("session is null");
 
-		String loginame = request.getParameter("inputLoginame");
-		System.out.println("loginame: " + loginame);
+		String loginName = request.getParameter("inputLoginName");
+		System.out.println("loginName: " + loginName);
 		String password = request.getParameter("inputPassword");
 		// System.out.println(password);
 
-		if (loginame != null && password != null) {
-			if (! loginame.equals("a")) {
+		if (loginName != null && password != null) {
+			ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
+			AccountService accountService = (AccountService) ctx.getBean("broadcastAccountService");
+
+			if (accountService.isExistLogin(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName)) {
+				return new ModelAndView("signup", "message", "This login name already exist!");
+			} else {
+				String md5Pwd = EcryptUtil.md5(password);
+				int currentTimestamp = DatetimeUtil.currentTimestamp();
+
+				String accountId = accountService.createLogin(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName, md5Pwd,
+						currentTimestamp);
 				UserSession user = new UserSession();
-				user.setId("id");
-				user.setNickname("Jerry");
+				user.setId(accountId);
+				user.setNickname(loginName);
 				session.setAttribute("user", user);
 
+				String avatarUrl = null;
+				accountService.create(accountId, accountId, avatarUrl, currentTimestamp);
+
 				return new ModelAndView("redirect:/signupSuccess");
-			} else {
-				return new ModelAndView("signup", "message", "This login name already exist!");
 			}
 		} else {
 			return null;

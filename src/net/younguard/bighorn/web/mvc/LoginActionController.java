@@ -3,6 +3,13 @@ package net.younguard.bighorn.web.mvc;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.younguard.bighorn.GlobalArgs;
+import net.younguard.bighorn.broadcast.service.AccountService;
+import net.younguard.bighorn.comm.util.EcryptUtil;
+import net.younguard.bighorn.domain.AccountBaseInfo;
+import net.younguard.bighorn.web.ApplicationContextProvider;
+
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,21 +27,32 @@ public class LoginActionController
 		if (session == null)
 			System.out.println("session is null");
 
-		String loginame = request.getParameter("inputLoginame");
-		System.out.println("loginame:" + loginame);
+		String loginName = request.getParameter("inputLoginName");
+		System.out.println("loginName:" + loginName);
 		String password = request.getParameter("inputPassword");
+		String md5Pwd = EcryptUtil.md5(password);
 		// System.out.println(password);
 
-		if (loginame != null && password != null) {
-			if (loginame.equals("a") && password.equals("a")) {
+		if (loginName != null && password != null) {
+			ApplicationContext ctx = ApplicationContextProvider.getApplicationContext();
+			AccountService accountService = (AccountService) ctx.getBean("broadcastAccountService");
+
+			if (accountService.login(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName, md5Pwd)) {
+				AccountBaseInfo account = accountService.queryAccount(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName);
+
 				UserSession user = new UserSession();
-				user.setId("id");
-				user.setNickname("Tom");
+				user.setId(account.getAccountId());
+				user.setNickname(loginName);
 				session.setAttribute("user", user);
 
-				return new ModelAndView("redirect:/loginSuccess");
+				String lastPage = (String) session.getAttribute("lastPage");
+				if (lastPage != null && lastPage.length() > 0) {
+					return new ModelAndView(lastPage);
+				} else {
+					return new ModelAndView("redirect:/loginSuccess");
+				}
 			} else {
-				return new ModelAndView("login", "message", "Wrong loginame or password!");
+				return new ModelAndView("login", "message", "Wrong login name or password!");
 			}
 		} else {
 			return null;

@@ -15,6 +15,9 @@
 	<bean id="broadcastAccountDao" class="net.younguard.bighorn.broadcast.dao.spring.AccountDaoImpl">
 		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
 	</bean>
+	<bean id="broadcastAccountLoginDao" class="net.younguard.bighorn.broadcast.dao.spring.AccountLoginDaoImpl">
+		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
+	</bean>
 	<bean id="broadcastDeviceDao" class="net.younguard.bighorn.broadcast.dao.spring.DeviceDaoImpl">
 		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
 	</bean>
@@ -39,6 +42,7 @@
 	<!-- start of service beans -->
 	<bean id="broadcastAccountService" class="net.younguard.bighorn.broadcast.service.AccountServiceImpl">
 		<property name="accountDao" ref="broadcastAccountDao" />
+		<property name="accountLoginDao" ref="broadcastAccountLoginDao" />
 	</bean>
 	<bean id="broadcastDeviceService" class="net.younguard.bighorn.broadcast.service.DeviceServiceImpl">
 		<property name="deviceDao" ref="broadcastDeviceDao" />

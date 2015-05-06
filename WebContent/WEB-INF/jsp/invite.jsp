@@ -77,6 +77,8 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
 	<div class="container page-header">
+	  <h2>&nbsp;</h2>
+	  <a class="navbar-brand glyphicon glyphicon-plus active" href="create-game.htm"></a>
 	  <h2>Invite List</h2>
 	</div>
 	
