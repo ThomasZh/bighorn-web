@@ -50,7 +50,7 @@ public class SignupActionController
 				session.setAttribute("user", user);
 
 				String avatarUrl = null;
-				accountService.create(accountId, accountId, avatarUrl, currentTimestamp);
+				accountService.create(accountId, loginName, avatarUrl, currentTimestamp);
 
 				return new ModelAndView("redirect:/signupSuccess");
 			}

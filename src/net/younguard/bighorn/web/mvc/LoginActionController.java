@@ -39,7 +39,8 @@ public class LoginActionController
 
 			if (accountService.login(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName, md5Pwd)) {
 				AccountBaseInfo account = accountService.queryAccount(GlobalArgs.LOGIN_TYPE_LOGINNAME, loginName);
-
+				System.out.println("accountId: " + account.getAccountId());
+				
 				UserSession user = new UserSession();
 				user.setId(account.getAccountId());
 				user.setNickname(loginName);

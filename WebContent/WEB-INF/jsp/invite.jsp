@@ -86,78 +86,84 @@
 	<div class="container">
 	  <div class="row" id="invite-list">
 	  
+	    <c:forEach var="invite" items="${invites}">
 	    <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/blue-plus.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>&nbsp;</h4>
-            <p>Join</p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
-		
-        <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/waiting.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>&nbsp;</h4>
-            <p>Waiting...</p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Tom</h4>
-            <p>1k</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
-	  	
-	    <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/blue-plus.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>&nbsp;</h4>
-            <p>Join</p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
 	    
-	    <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
 	      <div class="split-left" style="width: 50%; float:left" align="center">
 	        <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d</p>
+	        <c:if test="${invite.playerColor == 140}">
+   			  <img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+              <h4>${invite.playerName}</h4>
+              <p>1k</p>
+            </c:if>
+            <c:if test="${invite.playerColor != 140}">
+              <c:if test="${invite.isMe == 0}">
+                <a href="joinGameAction.htm?id=${invite.id}">
+   			      <img class="img-circle" src="images/blue-plus.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+                </a>
+                <h4>&nbsp;</h4>
+                <p>Join</p>
+              </c:if>
+              <c:if test="${invite.isMe == 1}">
+   			    <img class="img-circle" src="images/waiting.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+                <h4>&nbsp;</h4>
+                <p>Waiting...</p>
+              </c:if>
+            </c:if>
 		  </div> 
+		  
 		  <div class="split-right" style="width: 50%; float:right" align="center">
 		    <p></p>
-   			<img class="img-circle" src="images/blue-plus.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>&nbsp;</h4>
-            <p>Join</p>
+	        <c:if test="${invite.playerColor == 141}">
+   			  <img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+              <h4>${invite.playerName}</h4>
+              <p>3d</p>
+            </c:if>
+            <c:if test="${invite.playerColor != 141}">
+              <c:if test="${invite.isMe == 0}">
+                <a href="joinGameAction.htm?id=${invite.id}">
+   			      <img class="img-circle" src="images/blue-plus.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+                </a>
+                <h4>&nbsp;</h4>
+                <p>Join</p>
+              </c:if>
+              <c:if test="${invite.isMe == 1}">
+   			    <img class="img-circle" src="images/waiting.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+                <h4>&nbsp;</h4>
+                <p>Waiting...</p>
+              </c:if>
+            </c:if>
 		  </div>
 	    </div><!-- /.splitlayout -->
-	  
+	    </c:forEach>
+	    
   	  </div><!-- /.row -->
   	  
       
       <nav>
         <ul class="pagination" >
-          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-          <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          <c:if test="${pageNumber == 1}">
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          </c:if>
+          <c:if test="${pageNumber != 1}">
+            <li><a href="invite.htm?pageNumber=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          </c:if>
+          
+          <c:forEach var="i" begin="1" end="${pagesAvailable}">
+            <c:if test="${pageNumber == i}">
+              <li class="active"><a href="#">${pageNumber} <span class="sr-only">(current)</span></a></li>
+            </c:if>
+            <c:if test="${pageNumber != i}">
+              <li><a href="invite.htm?pageNumber=${i}">${i}</a></li>
+            </c:if>
+          </c:forEach>
+          
+          <c:if test="${pageNumber == pagesAvailable}">
+            <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </c:if>
+          <c:if test="${pageNumber != pagesAvailable}">
+            <li><a href="invite.htm?pageNumber=${pagesAvailable}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </c:if>
         </ul>
       </nav>
 
