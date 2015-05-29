@@ -58,7 +58,7 @@
               	  <li><a class="glyphicon glyphicon-log-in" href="login.htm"> Sign in <span class="sr-only">(current)</span></a></li>
                 </c:if> 
                 <c:if test="${sessionScope.user != null}">
-                  <li><a class="glyphicon glyphicon-user" href="#profile"> ${sessionScope.user.nickname}</a></li>
+                  <li><a class="glyphicon glyphicon-user" href="profile.htm"> ${sessionScope.user.nickname}</a></li>
                   <li><a class="glyphicon glyphicon-log-out" href="logoutAction.htm"> Logout</a></li>
                 </c:if>
               </ul>
@@ -92,7 +92,7 @@
 	      <div class="split-left" style="width: 50%; float:left" align="center">
 	        <p></p>
 	        <c:if test="${invite.playerColor == 140}">
-   			  <img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+   			  <img class="img-circle" src="${invite.playerAvatarUrl}" alt="Generic placeholder image" style="width: 100px; height: 100px;">
               <h4>${invite.playerName}</h4>
               <p>1k</p>
             </c:if>
@@ -115,7 +115,7 @@
 		  <div class="split-right" style="width: 50%; float:right" align="center">
 		    <p></p>
 	        <c:if test="${invite.playerColor == 141}">
-   			  <img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+   			  <img class="img-circle" src="${invite.playerAvatarUrl}" alt="Generic placeholder image" style="width: 100px; height: 100px;">
               <h4>${invite.playerName}</h4>
               <p>3d</p>
             </c:if>

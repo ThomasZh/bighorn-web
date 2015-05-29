@@ -4,71 +4,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd" >
-
-	<bean id="applicationContextProvider" class="net.younguard.bighorn.web.ApplicationContextProvider"></bean>
-
-	<!-- datasource config -->
-	<import resource="jdbc-context.xml" />
-
-	<!-- start of Dao beans -->
-	<bean id="broadcastAccountDao" class="net.younguard.bighorn.broadcast.dao.spring.AccountDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastAccountLoginDao" class="net.younguard.bighorn.broadcast.dao.spring.AccountLoginDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastDeviceDao" class="net.younguard.bighorn.broadcast.dao.spring.DeviceDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastDeviceAccountDao" class="net.younguard.bighorn.broadcast.dao.spring.DeviceAccountDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastGameDao" class="net.younguard.bighorn.broadcast.dao.spring.GameDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastGameManualDao" class="net.younguard.bighorn.broadcast.dao.spring.GameManualDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastGameMemberDao" class="net.younguard.bighorn.broadcast.dao.spring.GameMemberDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<bean id="broadcastPlayerDao" class="net.younguard.bighorn.broadcast.dao.spring.PlayerDaoImpl">
-		<property name="jdbcTemplate" ref="bighornJdbcTemplate" />
-	</bean>
-	<!-- end of Dao beans -->
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd 
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-	<!-- start of service beans -->
-	<bean id="broadcastAccountService" class="net.younguard.bighorn.broadcast.service.AccountServiceImpl">
-		<property name="accountDao" ref="broadcastAccountDao" />
-		<property name="accountLoginDao" ref="broadcastAccountLoginDao" />
+	<bean name="gameController" class="net.younguard.bighorn.web.mvc.go.BighornGameController">
+		<property name="gameService" ref="broadcastGameService" />
 	</bean>
-	<bean id="broadcastDeviceService" class="net.younguard.bighorn.broadcast.service.DeviceServiceImpl">
-		<property name="deviceDao" ref="broadcastDeviceDao" />
-		<property name="accountDeviceDao" ref="broadcastDeviceAccountDao" />
-	</bean>
-	<bean id="broadcastGameService" class="net.younguard.bighorn.broadcast.service.GameServiceImpl">
-		<property name="gameDao" ref="broadcastGameDao" />
-		<property name="gameMemberDao" ref="broadcastGameMemberDao" />
-		<property name="gameManualDao" ref="broadcastGameManualDao" />
-	</bean>
-	<bean id="broadcastPlayerService" class="net.younguard.bighorn.broadcast.service.PlayerServiceImpl">
-		<property name="playerDao" ref="broadcastPlayerDao" />
-	</bean>
-	<bean id="broadcastSessionService" class="net.younguard.bighorn.broadcast.service.SessionServiceHashMapImpl">
-	</bean>
-	<!-- end of service beans -->
-
 	<!-- 定义映射 -->
 	<bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="account.go">accountController</prop>
+				<prop key="game.go">gameController</prop>
 			</props>
 		</property>
 	</bean>
-
 
 </beans>	

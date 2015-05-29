@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContextAware;
 public class ApplicationContextProvider
 		implements ApplicationContextAware
 {
+	// @Resource
+	// @Autowired
 	private static ApplicationContext ctx = null;
 
 	public static ApplicationContext getApplicationContext()
@@ -14,6 +16,7 @@ public class ApplicationContextProvider
 		return ctx;
 	}
 
+	@Override
 	public void setApplicationContext(ApplicationContext ctx)
 			throws BeansException
 	{

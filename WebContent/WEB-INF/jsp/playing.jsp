@@ -59,7 +59,7 @@
               	  <li><a class="glyphicon glyphicon-log-in" href="login.htm"> Sign in <span class="sr-only">(current)</span></a></li>
                 </c:if> 
                 <c:if test="${sessionScope.user != null}">
-                  <li><a class="glyphicon glyphicon-user" href="#profile"> ${sessionScope.user.nickname}</a></li>
+                  <li><a class="glyphicon glyphicon-user" href="profile.htm"> ${sessionScope.user.nickname}</a></li>
                   <li><a class="glyphicon glyphicon-log-out" href="logoutAction.htm"> Logout</a></li>
                 </c:if>
               </ul>
@@ -77,72 +77,84 @@
 
 
 	<div class="container page-header">
+	  <h2>&nbsp;</h2>
+	  <a class="navbar-brand glyphicon glyphicon-plus active" href="create-game.htm"></a>
 	  <h2>Playing List</h2>
 	</div>
+
 	
 	<div class="container">
-	  <div class="row" id="invite-list">
+	  <div class="row" id="playing-list">
 	  
-	    <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Tom</h4>
-            <p>1k <span class="label label-danger">2</span></p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
-		
-        <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d <span class="label label-success">Thinking...</span></p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Tom</h4>
-            <p>1k</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
-	  	
-	    <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
-	      <div class="split-left" style="width: 50%; float:left" align="center">
-	        <p></p>
-   			<img class="img-circle" src="images/profile1.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Tom</h4>
-            <p>1k <span class="label label-danger">1</span></p>
-		  </div> 
-		  <div class="split-right" style="width: 50%; float:right" align="center">
-		    <p></p>
-   			<img class="img-circle" src="images/profile2.jpg" alt="Generic placeholder image" style="width: 100px; height: 100px;">
-            <h4>Jerry</h4>
-            <p>3d</p>
-		  </div>
-	    </div><!-- /.splitlayout -->
-	  
+	  	<c:forEach var="playing" items="${playings}">
+	  	  <div class="col-xs-12 col-sm-6 block"><!-- /splitlayout -->
+	  	    <div class="split-left" style="width: 50%; float:left" align="center">
+	  	      <p></p>
+	  	      <a href="5stoneBoard.htm?id=${playing.id}">
+   			    <img class="img-circle" src="${playing.blackPlayerAvatarUrl}" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+   			  </a>
+              <h4>${playing.blackPlayerName}</h4>
+              <c:if test="${playing.blackBadgeNum > 0}">
+                <p>1k <span class="label label-danger">${playing.blackBadgeNum}</span></p>
+              </c:if>
+              <c:if test="${playing.blackBadgeNum == 0}">
+                <c:if test="${playing.isBlackThinking == 1}">
+                  <p>1k <span class="label label-success">Thinking...</span></p>
+                </c:if>
+                <c:if test="${playing.isBlackThinking == 0}">
+                  <p>1k</p>
+                </c:if>
+              </c:if>
+	  	    </div>
+	  	    <div class="split-right" style="width: 50%; float:right" align="center">
+	  	      <p></p>
+	  	      <a href="5stoneBoard?id=${playing.id}">
+   			    <img class="img-circle" src="${playing.whitePlayerAvatarUrl}" alt="Generic placeholder image" style="width: 100px; height: 100px;">
+              </a>
+              <h4>${playing.whitePlayerName}</h4>
+              <c:if test="${playing.isWhiteThinking == 1}">
+                <p>1k <span class="label label-success">Thinking...</span></p>
+              </c:if>
+              <c:if test="${playing.isWhiteThinking == 0}">
+                <c:if test="${playing.whiteBadgeNum > 0}">
+                  <p>3d <span class="label label-danger">${playing.blackBadgeNum}</span></p>
+                </c:if>
+                <c:if test="${playing.whiteBadgeNum == 0}">
+                  <p>3d</p>
+                </c:if>
+              </c:if>
+	  	    </div>
+	  	  </div><!-- /.splitlayout -->
+	    </c:forEach>	  
   	  </div><!-- /.row -->
       
       
       <nav>
-        <ul class="pagination">
-          <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-          <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        <ul class="pagination" >
+          <c:if test="${pageNumber == 1}">
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          </c:if>
+          <c:if test="${pageNumber != 1}">
+            <li><a href="invite.htm?pageNumber=1" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+          </c:if>
+          
+          <c:forEach var="i" begin="1" end="${pagesAvailable}">
+            <c:if test="${pageNumber == i}">
+              <li class="active"><a href="#">${pageNumber} <span class="sr-only">(current)</span></a></li>
+            </c:if>
+            <c:if test="${pageNumber != i}">
+              <li><a href="invite.htm?pageNumber=${i}">${i}</a></li>
+            </c:if>
+          </c:forEach>
+          
+          <c:if test="${pageNumber == pagesAvailable}">
+            <li class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </c:if>
+          <c:if test="${pageNumber != pagesAvailable}">
+            <li><a href="invite.htm?pageNumber=${pagesAvailable}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+          </c:if>
         </ul>
       </nav>
-
     
       <!-- FOOTER -->
       <footer>

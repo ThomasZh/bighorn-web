@@ -4,6 +4,8 @@
 
 __Max_Size = 19;
 __Last_Mark = 'O';
+__Last_X = 0;
+__Last_Y = 0;
 
 // class define
 function GoBoard(dp, dw, dh, boardSize) {

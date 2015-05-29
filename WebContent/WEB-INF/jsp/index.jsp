@@ -58,7 +58,7 @@
               	  <li><a class="glyphicon glyphicon-log-in" href="login.htm"> Sign in <span class="sr-only">(current)</span></a></li>
                 </c:if> 
                 <c:if test="${sessionScope.user != null}">
-                  <li><a class="glyphicon glyphicon-user" href="#profile"> ${sessionScope.user.nickname}</a></li>
+                  <li><a class="glyphicon glyphicon-user" href="profile.htm"> ${sessionScope.user.nickname}</a></li>
                   <li><a class="glyphicon glyphicon-log-out" href="logoutAction.htm"> Logout</a></li>
                 </c:if>
               </ul>
